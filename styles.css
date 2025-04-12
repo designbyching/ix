@@ -67,7 +67,7 @@ body {
 /* Hero: Big, bold, background image */
 .hero {
     min-height: 80vh;
-    background: url("/assets/neon-grid.jpg") no-repeat center/cover;
+    background: url("./assets/neon-grid.jpg") no-repeat center/cover;
     display: flex;
     align-items: center;
     justify-content: center;

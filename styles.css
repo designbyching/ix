@@ -1,0 +1,312 @@
+/* Reset defaults */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body: Dark X vibe, small text */
+body {
+    background: #0f1419;
+    color: #1da1f2;
+    font-family: "IBM Plex Mono", "Consolas", monospace;
+    font-size: rem;
+    line-height: 1.4;
+}
+
+/* Navbar: Flexbox, sticky */
+.navbar {
+    background: #1a2026;
+    padding: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.nav-logo {
+    color: #f4245e;
+    font-size: 1.2rem;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: #f4245e;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+}
+
+.nav-links a {
+    color: #1da1f2;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #f4245e;
+    text-shadow: 0 0 8px #f4245e;
+}
+
+/* Hero: Big, bold, background image */
+.hero {
+    min-height: 80vh;
+    background: url("/assets/neon-grid.PNG") no-repeat center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-content {
+    text-align: center;
+    padding: 2rem;
+    background: rgba(15, 20, 25, 0.7);
+}
+
+.hero h1 {
+    font-size: 2rem;
+    color: #f4245e;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Glitch Base */
+.glitch {
+    position: relative;
+    display: inline-block;
+}
+
+/* Glitch 1: Wild Text Scramble */
+.glitch.scramble::before,
+.glitch.scramble::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    color: #1da1f2;
+}
+
+.glitch.scramble::before {
+    animation: scramble-glitch 0.3s infinite linear;
+    transform: translateX(-2px);
+}
+
+.glitch.scramble::after {
+    animation: scramble-glitch 0.4s infinite linear reverse;
+    transform: translateX(2px);
+}
+
+@keyframes scramble-glitch {
+    0% { clip-path: inset(0 0 70% 0); transform: translateX(-5px) skew(10deg); }
+    25% { clip-path: inset(50% 0 0 0); transform: translateX(5px) skew(-10deg); }
+    50% { clip-path: inset(0 0 30% 0); transform: translateY(-3px); }
+    75% { clip-path: inset(20% 0 50% 0); transform: translateY(3px); }
+    100% { clip-path: inset(60% 0 0 0); transform: translateX(-2px) skew(5deg); }
+}
+
+/* Glitch 2: Jagged Offset with Blue Sparks */
+.glitch.offset::before,
+.glitch.offset::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.glitch.offset::before {
+    color: #1da1f2;
+    animation: offset-glitch 0.5s infinite linear;
+    text-shadow: 2px 2px 5px #1da1f2;
+}
+
+.glitch.offset::after {
+    color: #f4245e;
+    animation: offset-glitch 0.6s infinite linear reverse;
+    text-shadow: -2px -2px 5px #f4245e;
+}
+
+@keyframes offset-glitch {
+    0% { transform: translate(5px, -3px); clip-path: inset(0 0 0 0); }
+    20% { transform: translate(-4px, 2px); clip-path: inset(10% 0 80% 0); }
+    40% { transform: translate(3px, -5px); clip-path: inset(60% 0 20% 0); }
+    60% { transform: translate(-2px, 4px); clip-path: inset(30% 0 50% 0); }
+    100% { transform: translate(5px, -2px); clip-path: inset(0 0 0 0); }
+}
+
+/* Glitch 3: Flickering Neon Pulse */
+.glitch.pulse::before,
+.glitch.pulse::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.glitch.pulse::before {
+    color: #1da1f2;
+    animation: pulse-glitch 0.8s infinite ease-in-out;
+    opacity: 0.9;
+}
+
+.glitch.pulse::after {
+    color: #f4245e;
+    animation: pulse-glitch 1s infinite ease-in-out reverse;
+    opacity: 0.7;
+}
+
+@keyframes pulse-glitch {
+    0% { opacity: 0.9; transform: skew(2deg); text-shadow: 0 0 15px #1da1f2; }
+    20% { opacity: 0.3; transform: skew(-1deg); }
+    40% { opacity: 1; transform: skew(3deg); text-shadow: 0 0 20px #1da1f2; }
+    60% { opacity: 0.5; transform: skew(-2deg); }
+    100% { opacity: 0.9; transform: skew(1deg); text-shadow: 0 0 15px #1da1f2; }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .glitch::before,
+    .glitch::after {
+        animation: none;
+    }
+}
+
+.hero p {
+    font-size: 0.9rem;
+    margin: 0.3rem 0;
+}
+
+.cta-btn {
+    display: inline-block;
+    background: #f4245e;
+    color: #0f1419;
+    padding: 0.1rem 1rem; /* Adjusted for better clickability */
+    text-decoration: none;
+    font-weight: bold;
+    transition: transform 0.2s;
+    margin-top: 20px;
+}
+
+.cta-btn:hover {
+    transform: scale(1.1);
+}
+
+/* Portfolio: Flexbox grid */
+.portfolio {
+    padding: 2rem;
+}
+
+.portfolio h2 {
+    font-size: 1.5rem;
+    color: #1da1f2;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.grid-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    justify-content: center;
+    max-width: 1000px;
+    margin: 30px auto;
+}
+
+.grid-item {
+    flex: 1 1 280px;
+    background: #1a2026;
+    padding: 1rem;
+    text-align: center;
+}
+
+.grid-item a {
+    color: #1da1f2;
+    text-decoration: none;
+    font-size: 0.9rem;
+    display: block;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.grid-item a:hover {
+    color: #f4245e;
+    transform: scale(1.05);
+    text-shadow: 0 0 8px #f4245e;
+}
+
+/* Footer: Enhanced */
+.footer {
+    padding: 1.5rem;
+    background: #1a2026;
+    text-align: center;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    list-style: none;
+    margin: 0.5rem 0;
+}
+
+.social-links a {
+    color: #1da1f2;
+    text-decoration: none;
+}
+
+.social-links a:hover {
+    color: #f4245e;
+}
+
+.footer p {
+    font-size: 0.8rem;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .nav-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        gap: 0.8rem;
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .hero h1 {
+        font-size: 1.6rem;
+    }
+
+    .grid-item {
+        flex: 1 1 100%;
+    }
+}
